@@ -1,0 +1,12 @@
+{
+    "DEFAULT_MISCLASSIFICATION_COST": 20,
+    "DEFAULT_FALSE_ALARM_COST": 50,
+    "DEFAULT_ESCAPE_COST": 500,
+    "SPECIFIC_OVERRIDE_COSTS": {
+        "Via->Pass": 1000,
+        "Open->Pass": 1000,
+        "Pass->Via": 150,
+        "Pass->Protrusion": 800,
+        "Pass->Short": 800      
+    }
+}
