@@ -9,27 +9,22 @@ echo.
 
 set "PYTHON_CMD="
 
-where py >nul 2>nul
+where python >nul 2>nul
 if not errorlevel 1 (
-    set "PYTHON_CMD=py -3"
-)
-
-if not defined PYTHON_CMD (
-    where python >nul 2>nul
+    python --version >nul 2>nul
     if not errorlevel 1 (
         set "PYTHON_CMD=python"
     )
 )
 
 if not defined PYTHON_CMD (
-    echo ERROR: Python was not found.
-    echo.
-    echo Install Python 3 from https://www.python.org/downloads/
-    echo During installation, enable "Add python.exe to PATH".
-    echo Then run start_app.bat again.
-    echo.
-    pause
-    exit /b 1
+    where py >nul 2>nul
+    if not errorlevel 1 (
+        py -3 --version >nul 2>nul
+        if not errorlevel 1 (
+            set "PYTHON_CMD=py -3"
+        )
+    )
 )
 
 if not exist ".venv\Scripts\python.exe" (
