@@ -6,7 +6,7 @@ import os
 import traceback
 from dataclasses import dataclass
 from os import PathLike
-from pathlib import Path, PureWindowsPath
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -608,14 +608,7 @@ def load_live_inference_model(
 
 
 def _image_name(image_path):
-    if not image_path:
-        return ""
-    image_path = str(image_path)
-    # Paths come from a Windows GUI, so a "\\"-containing path needs Windows-aware parsing
-    # even when this code runs on a non-Windows machine (e.g. local testing on macOS/Linux).
-    if "\\" in image_path:
-        return PureWindowsPath(image_path).name
-    return Path(image_path).name
+    return "" if not image_path else str(image_path)
 
 
 def _error_defect_name(error=None):
